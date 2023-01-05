@@ -1,0 +1,34 @@
+<% if points.blank? %>
+  <p class="nodata"><%= t('label_no_data') %></p>
+<% else %>
+  <table id="point_list" class="list">
+    <thead>
+      <tr id="list_title">
+        <th><%= t(:field_point_serial_no) %></th>
+        <th><%= t(:field_point_start_date) %></th>
+        <th><%= t(:field_point_subject) %></th>
+        <th><%= t(:field_point_status_id) %></th>
+        <th><%= t(:field_point_author_id) %></th>
+        <th><%= t(:field_point_point_date) %></th>
+        <th><%= t(:field_point_closed_on) %></th>
+        <th><%= t(:field_point_description) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% points.each do |point, index| %>
+        <tr>
+          <td><%= point.id %></td>
+          <td><%= link_to_show_point(point) %></td>
+          <td><%= point.subject %></td>
+          <td><%= t("point_status.#{point.status_id}") %></td>
+          <td><%= point.author %></td>
+          <td><%= point.point_date.to_date %></td>
+          <td><%= point.closed_on.to_date if point.closed_on? %></td>
+          <td><%= point.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <span class="pagination"><%= pagination_links_full points_page, points_count %></span>
+<% end %>

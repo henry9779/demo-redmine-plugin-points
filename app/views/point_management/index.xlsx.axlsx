@@ -1,0 +1,17 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "UserPoints") do |sheet|
+  sheet.add_row @user_point_columns
+
+  @users.each do |user|
+    sheet.add_row [
+                    user.id,
+                    user.firstname,
+                    user.lastname,
+                    user.user_point&.value,
+                    user.user_point&.remark,
+                    user.area_cf_value,
+                    user.unit_cf_value
+                  ]
+  end
+end

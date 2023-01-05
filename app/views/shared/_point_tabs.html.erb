@@ -1,0 +1,20 @@
+<h2><%= l(:label_point_plural) %></h2>
+
+<div class="tabs">
+  <ul>
+    <li>
+      <% if current_page? controller: :points %>
+        <%= link_to l(:label_point_record), points_path, class: 'selected' %>
+      <% else %>
+        <%= link_to l(:label_point_record), points_path %>
+      <% end %>
+    </li>
+    <li>
+      <% if current_page? controller: :point_management %>
+        <%= link_to l(:label_point_management), point_management_index_path, class: 'selected' %>
+      <% else %>
+        <%= link_to l(:label_point_management), point_management_index_path %>
+      <% end %>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,115 @@
+zh:
+  label_point_plural: 点数
+  label_point_management: 点数管理
+  label_point_settings: 点数设定
+  label_setting: 设定
+  label_other: 其他
+  label_cancel_setting: 取消设定
+  label_point_new: 转换点数
+  label_point_record: 转换点数纪录
+  label_point_lines: 纪录
+  label_point_edit: 编辑点数
+  label_point_log_plural: 历史
+  label_user_point_log: 纪录
+
+  field_point_subject: 主题
+  field_point_author_id: 填写人
+  field_point_status_id: 状态
+  field_point_description: 备注
+  field_point_amount: 总点数
+  field_point_point_date: 建立日期
+  field_point_start_date: 计算期间
+  field_point_end_date: 到
+  field_point_id: 点数
+  field_point_id_nil: 未转换点数
+  field_point_id_present: 已转换点数
+  field_point_status: 点数单状态
+  field_point_closed_on: 结束日期
+  field_point_serial_no: 序号
+
+  field_point_line_user_id: 姓名
+  field_point_line_project_id: 项目
+  field_point_line_status_id: 状态
+  field_point_line_total_entries: 总时数
+  field_point_line_value: 点数
+  field_point_line_convert_value: 原始计算
+  field_point_line_carry_value: 结算点数
+  field_point_line_description: 备注
+  field_point_line_user_area: 所属地区
+  field_point_line_user_unit: 所属单位
+  field_point_line_purple_no: 紫藤案号
+  field_status_id: 状态
+  field_carry_value: 结算点数
+  field_edit_by: 修改人
+  field_department: 单位
+  field_district: 区域
+
+  text_point_finish_and_set: "点数单结束时间为 %{time}，%{label} 更新为 %{value}"
+  text_point_api_error: "错误资料为 %{value}"
+  text_point_convert_value: 为 总时数 及 点数 相乘总和。
+  text_point_carry_value: |
+    为 原始计算 数字 转换，
+    尾数规则：
+    原始计算 尾数 0 - 2.49 结算点数尾数 为 0，
+    原始计算 尾数 2.5 - 7.49 结算点数尾数 为 5，
+    原始计算 尾数 7.5 - 9.99 结算点数进位 10。
+
+  text_user_point_new_point: "设定 %{user} 预设点数为 %{value}"
+  text_user_point_new_remark: "设定 %{user} 备注为 %{value}"
+  text_user_point_update_point: "%{user} 预设点数为 %{old}，更新为 %{value}"
+  text_user_point_update_remark: "%{user} 备注为 %{old}，更新为 %{value}"
+  text_user_point_value_nil: 空值
+
+  button_search: 搜寻
+
+  error_convertible_entries: 所选工时都已转换，请更改搜寻条件。
+
+  point_status:
+    pending: 草稿
+    sync: 同步资料
+    reject: 全部退回
+    partially_reject: 部分退回
+    in_review: 结算中
+    finish: 全部结算
+    fail: 同步失败
+
+  point_line_status:
+    pending: 草稿
+    confirm: 结算中
+    reject: 退回
+    finish: 已结算
+
+  point_settings:
+    create:
+      success: 新增管理点数人员成功
+      fail: 该人员已设定
+    destroy:
+      success: 已取消 %{user} 点数管理功能
+      confirm: 确定取消？
+
+  points:
+    create:
+      success: 新增纪录完成
+    update:
+      success: 更新纪录成功
+    destroy:
+      success: 已删除纪录
+      confirm: 确定删除纪录？
+
+  activerecord:
+    attributes:
+      point_setting:
+        user_id: 设定可管理点数人员
+      user_point:
+        value: 预设点数
+        remark: 备注
+        logs: 修改纪录
+      point:
+        subject: 主题
+        author_id: 填写人
+        status_id: 状态
+        description: 备注
+        amount: 数量
+        point_date: 建立日期
+        start_date: 计算期间
+        end_date: 到

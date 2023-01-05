@@ -1,0 +1,11 @@
+<% query_params = request.query_parameters %>
+<li>
+  <%= link_to l(:field_point_id_nil),
+              unconverted_entries_url(query_params),
+              class: selected_unconverted_entries(@query) %>
+</li>
+<li>
+  <%= link_to l(:field_point_id_present),
+              converted_entries_url(query_params),
+              class: selected_converted_entries(@query) %>
+</li>

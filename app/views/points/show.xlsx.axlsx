@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+wrap_text = wb.styles.add_style({ alignment: { vertical: :center, vertical: :center, shrink_to_fit: true }})
+
+wb.add_worksheet(name: "Points") do |sheet|
+  sheet.add_row [ l(:field_point_start_date), @point.date_range ]
+  sheet.add_row [ l(:field_point_subject), @point.subject ]
+  sheet.add_row [ l(:field_point_amount), @point.amount.to_f ]
+  sheet.add_row [ l(:field_point_author_id), @point.author ]
+  sheet.add_row [ l(:field_point_status_id), l("point_status.#{@point.status_id}") ]
+  sheet.add_row [ l(:field_point_description), @point.description ]
+
+  sheet.add_row
+
+  sheet.add_row @line_columns
+  @lines.each.with_index(1) do |line, index|
+    sheet.add_row [
+                    index,
+                    l("point_line_status.#{line.status_id}"),
+                    line.user.name,
+                    line.user_area,
+                    line.user_unit,
+                    line.project.name,
+                    line.purple_no,
+                    line.total_entries.to_f,
+                    line.value.to_f,
+                    line.convert_value.to_f,
+                    line.carry_value.to_f,
+                    line.description
+                  ]
+  end
+end

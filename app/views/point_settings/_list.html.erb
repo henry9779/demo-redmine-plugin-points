@@ -1,0 +1,22 @@
+<table id="point_setting_list" class="list">
+  <thead>
+    <tr id="list_title">
+      <th>#</th>
+      <th><%= t('label_user') %></th>
+      <th><%= t('label_other') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% point_settings.each.with_index(1) do |setting, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= setting.user.name %></td>
+        <td><%= link_to t('label_cancel_setting'),
+                        point_setting_path(setting),
+                        method: :delete,
+                        data: { confirm: t('point_settings.destroy.confirm') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

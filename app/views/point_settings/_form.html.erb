@@ -1,0 +1,11 @@
+<fieldset>
+  <%= form_for point_setting, url: point_settings_path, local: true do |f| %>
+    <%= f.label :user_id %>
+    <%= f.select :user_id, options_for_user %>
+    <%= f.submit t('label_setting') %>
+  <% end %>
+</fieldset>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag :set_multiselect_style, plugin: 'redmine_points' %>
+<% end %>

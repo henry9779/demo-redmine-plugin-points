@@ -1,0 +1,37 @@
+<h3 class="title"><%= @point_line.project.name %></h3>
+
+<%= form_for @point_line, url: point_line_update_entries_path(@point_line),
+                          remote: true,
+                          method: :post do |f| %>
+  <fieldset class="box">
+    <table>
+      <tr>
+        <th><%= l(:field_issue) %></th>
+        <th><%= l(:field_spent_on) %></th>
+        <th><%= l(:field_created_on) %></th>
+        <th><%= l(:field_hours) %></th>
+      </tr>
+      <tbody>
+        <% @time_entries.each_with_index do |entry, idx| %>
+          <tr class="entry-line" id="line-<%= idx %>">
+            <td><%= entry.issue.subject %></td>
+            <td><%= entry.spent_on %></td>
+            <td><%= entry.created_on.strftime('%F %T') %></td>
+            <td><%= entry.hours.round(2) %></td>
+
+            <% if @time_entries.count > 1 %>
+              <td><%= link_to_remove_entry_lines "", f, class: 'icon icon-del' %></td>
+            <% end %>
+
+            <%= f.hidden_field :time_entry_ids, value: entry.id, multiple: true %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <p class="buttons">
+    <%= submit_tag l(:button_update) %>
+    <%= link_to_function l(:button_cancel), 'hideModal(this)' %>
+  </p>
+<% end %>

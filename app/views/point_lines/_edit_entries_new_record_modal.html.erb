@@ -1,0 +1,34 @@
+<h3 class="title"><%= point_line.project.name %></h3>
+
+<form>
+  <fieldset class="box">
+    <table>
+      <tr>
+        <th><%= l(:field_issue) %></th>
+        <th><%= l(:field_spent_on) %></th>
+        <th><%= l(:field_created_on) %></th>
+        <th><%= l(:field_hours) %></th>
+      </tr>
+      <tbody>
+        <% time_entries = TimeEntry.where(id: point_line.time_entry_ids) %>
+        <% time_entries.each do |entry| %>
+          <tr class="entry-line line-<%= idx %>" id="entry-<%= entry.id %>">
+            <td><%= entry.issue.subject %></td>
+            <td><%= entry.spent_on %></td>
+            <td><%= entry.created_on.strftime('%F %T') %></td>
+            <td><%= entry.hours.round(2) %></td>
+
+            <% if time_entries.count > 1 %>
+              <td><%= link_to_remove_entry_lines_new_record '', class: 'icon icon-del' %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <p class="buttons">
+    <%= link_to_function l(:button_update), "checkEntryStatus(this, #{idx})" %>
+    <%= link_to_function l(:button_cancel), 'hideModal(this)' %>
+  </p>
+</form>

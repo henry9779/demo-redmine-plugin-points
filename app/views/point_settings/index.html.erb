@@ -1,0 +1,12 @@
+<h2><%= l(:label_point_settings) %></h2>
+
+<%= render partial: 'form', locals: { point_setting: @point_setting } %>
+
+<% if @point_settings_count.zero? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <div id="list_section">
+    <%= render partial: 'list', locals: { point_settings: @_point_settings } %>
+    <span class="pagination"><%= pagination_links_full @point_settings_page, @point_settings_count %></span>
+  </div>
+<% end %>

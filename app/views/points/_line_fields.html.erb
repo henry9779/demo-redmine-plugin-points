@@ -1,0 +1,83 @@
+<tr class="line fields" id="line-<%= idx %>">
+  <td>
+    <%= t("point_line_status.#{f.object.status_id}") %>
+  </td>
+  <td class="user-name">
+    <%= f.object.user %>
+    <%= f.hidden_field :user_id, value: f.object.user.id %>
+  </td>
+  <td>
+    <%= f.object.project %>
+    <%= f.hidden_field :project_id, value: f.object.project.id %>
+  </td>
+  <td class="purple-no">
+    <%= f.object.purple_no %>
+    <%= f.hidden_field :purple_no, value: f.object.purple_no %>
+  </td>
+  <td class="total-entries">
+    <% if point.waiting_for_sync? || point.sync_failed? %>
+      <% if f.object.new_record? %>
+        <%= link_to f.object.total_entries, nil, id: "link-#{idx}", remote: true %>
+        <%= f.hidden_field :total_entries, value: f.object.total_entries %>
+      <% else %>
+        <%= link_to_edit_line_entries(f) %>
+        <%= f.hidden_field :total_entries, value: f.object.total_entries %>
+      <% end %>
+    <% else %>
+      <%= f.object.total_entries %>
+    <% end %>
+  </td>
+  <td class="value">
+    <% if point.waiting_for_sync? || point.sync_failed? %>
+      <%= f.text_field :value, no_label: true, size: 4, onkeyup: "updatePointAssociatedValues(this, #{idx})" %>
+    <% else %>
+      <%= f.object.value %>
+    <% end %>
+  </td>
+  <td class="convert-value">
+    <%= f.object.convert_value %>
+  </td>
+  <td class="carry-value">
+    <% if point.waiting_for_sync? || point.sync_failed? %>
+      <%= f.text_field :carry_value, no_label: true, size: 4 %>
+    <% else %>
+      <%= f.object.carry_value %>
+    <% end %>
+  </td>
+  <td class="description">
+    <% if point.waiting_for_sync? || point.sync_failed? %>
+      <%= f.text_field :description, no_label: true %>
+    <% else %>
+      <%= f.object.description %>
+    <% end %>
+  </td>
+  <td>
+    <% if point.waiting_for_sync? || point.sync_failed? %>
+      <%= link_to_remove_point_fields "", f, class: 'icon icon-del', idx: idx %>
+    <% end %>
+  </td>
+
+  <%= f.hidden_field :convert_value, value: f.object.convert_value %>
+
+  <% f.object.time_entry_ids.each do |id| %>
+    <%= f.hidden_field :time_entry_ids, value: id, multiple: true %>
+  <% end %>
+
+  <%= f.hidden_field :user_area, value: f.object.user_area %>
+  <%= f.hidden_field :user_unit, value: f.object.user_unit %>
+</tr>
+
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    restoreDescData();
+    restoreSubjectAndDesc();
+
+    $("a#link-<%= idx %>").click(function(e) {
+      Rails.stopEverything(e);
+
+      $('#ajax-modal').html('<%= escape_javascript(render partial: 'point_lines/edit_entries_new_record_modal',
+                                                   locals: { point_line: f.object, idx: idx } ) %>');
+      showModal('ajax-modal', 'auto');
+    });
+  });
+<% end %>

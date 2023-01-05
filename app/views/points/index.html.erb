@@ -1,0 +1,6 @@
+<%= render partial: 'shared/point_tabs' %>
+
+<%= render partial: 'query_filter' %>
+<%= render partial: 'index_list', locals: { points: @_points,
+                                            points_page: @points_page,
+                                            points_count: @points_count} %>

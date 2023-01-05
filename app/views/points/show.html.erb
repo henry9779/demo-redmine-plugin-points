@@ -1,0 +1,48 @@
+<div class="contextual">
+  <% if @point.waiting_for_sync? || @point.sync_failed? %>
+      <%= link_to l(:button_edit),
+                  { controller: 'points', action: 'edit', id: @point },
+                  class: 'icon icon-edit' %>
+      <%= link_to l(:button_delete),
+                  { controller: 'points', action: 'destroy', id: @point },
+                  class: 'icon icon-del',
+                  method: :delete,
+                  data: { confirm: t('points.destroy.confirm') } %>
+  <% else %>
+    <%= link_to l(:button_edit),
+                { controller: 'points', action: 'edit', id: @point },
+                class: 'icon icon-edit' %>
+  <% end %>
+</div>
+
+<h2><%= @point.date_range %></h2>
+
+<div class="issue point details">
+  <div class="subject">
+    <h3>
+      <%= @point.subject + ' - ' + l(:field_point_amount) + ':' + @point.amount.to_s %>
+    </h3>
+  </div>
+
+  <%= render partial: 'points/attributes', locals: { point: @point } %>
+
+  <hr />
+  <p><strong><%= l(:label_point_lines) %></strong></p>
+  <div class="point-lines">
+    <%= render partial: 'points/point_lines', locals: { point: @point } %>
+  </div>
+</div>
+
+<% if @point_logs.any? %>
+  <%= render partial: 'points/history', locals: { point_logs: @point_logs } %>
+<% end %>
+
+<p class="other-formats"><%= l(:label_export_to) %>
+  <span>
+    <%= link_to 'XLSX', point_path( format: 'xlsx') %>
+  </span>
+</p>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag :points, plugin: 'redmine_points' %>
+<% end %>

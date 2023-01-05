@@ -1,0 +1,18 @@
+<%= issue_fields_rows do |rows| %>
+  <% rows.left l(:field_point_author_id), point.author %>
+  <% rows.left l(:field_point_status_id), l("point_status.#{point.status_id}") %>
+  <% rows.left l(:field_point_point_date), point.point_date.to_date %>
+  <% rows.left l(:field_point_closed_on), point.closed_on.to_date if point.closed_on? %>
+<% end %>
+
+<% if point.description? %>
+  <hr />
+  <p>
+    <strong>
+      <%= l(:field_point_description) %>
+    </strong>
+  </p>
+  <div class="wiki">
+    <%= textilizable point, :description %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<% if @destroy_entries.any? %>
+  storeDescData();
+  storeSubjectAndDesc();
+  window.onbeforeunload = null;
+  location.reload(true);
+<% else %>
+  hideModal($('form.edit_point_line'));
+<% end %>

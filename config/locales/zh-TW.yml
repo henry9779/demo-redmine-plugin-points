@@ -1,0 +1,115 @@
+zh-TW:
+  label_point_plural: 點數
+  label_point_management: 點數管理
+  label_point_settings: 點數設定
+  label_setting: 設定
+  label_other: 其他
+  label_cancel_setting: 取消設定
+  label_point_new: 轉換點數
+  label_point_record: 轉換點數紀錄
+  label_point_lines: 紀錄
+  label_point_edit: 編輯點數
+  label_point_log_plural: 歷史
+  label_user_point_log: 紀錄
+
+  field_point_subject: 主旨
+  field_point_author_id: 填寫人
+  field_point_status_id: 狀態
+  field_point_description: 備註
+  field_point_amount: 總點數
+  field_point_point_date: 建立日期
+  field_point_start_date: 計算期間
+  field_point_end_date: 到
+  field_point_id: 點數
+  field_point_id_nil: 未轉換點數
+  field_point_id_present: 已轉換點數
+  field_point_status: 點數單狀態
+  field_point_closed_on: 結束日期
+  field_point_serial_no: 序號
+
+  field_point_line_user_id: 姓名
+  field_point_line_project_id: 專案
+  field_point_line_status_id: 狀態
+  field_point_line_total_entries: 總時數
+  field_point_line_value: 點數
+  field_point_line_convert_value: 原始計算
+  field_point_line_carry_value: 結算點數
+  field_point_line_description: 備註
+  field_point_line_user_area: 所屬地區
+  field_point_line_user_unit: 所屬單位
+  field_point_line_purple_no: 紫藤案號
+  field_status_id: 狀態
+  field_carry_value: 結算點數
+  field_edit_by: 修改人
+  field_department: 部門
+  field_district: 地區
+
+  text_point_finish_and_set: "點數單結束時間為 %{time}，%{label} 更新為 %{value}"
+  text_point_api_error: "錯誤資料為 %{value}"
+  text_point_convert_value: 為 總時數 及 點數 相乘總和。
+  text_point_carry_value: |
+    為 原始計算 數字 轉換，
+    尾數規則：
+    原始計算 尾數 0 - 2.49 結算點數尾數 為 0，
+    原始計算 尾數 2.5 - 7.49 結算點數尾數 為 5，
+    原始計算 尾數 7.5 - 9.99 結算點數進位 10。
+
+  text_user_point_new_point: "設定 %{user} 預設點數為 %{value}"
+  text_user_point_new_remark: "設定 %{user} 備註為 %{value}"
+  text_user_point_update_point: "%{user} 預設點數為 %{old}，更新為 %{value}"
+  text_user_point_update_remark: "%{user} 備註為 %{old}，更新為 %{value}"
+  text_user_point_value_nil: 空值
+
+  button_search: 搜尋
+
+  error_convertible_entries: 所選工時都已轉換，請更改搜尋條件。
+
+  point_status:
+    pending: 草稿
+    sync: 同步資料
+    reject: 全部退回
+    partially_reject: 部分退回
+    in_review: 結算中
+    finish: 全部結算
+    fail: 同步失敗
+
+  point_line_status:
+    pending: 草稿
+    confirm: 結算中
+    reject: 退回
+    finish: 已結算
+
+  point_settings:
+    create:
+      success: 新增管理點數人員成功
+      fail: 該人員已設定
+    destroy:
+      success: 已取消 %{user} 點數管理功能
+      confirm: 確定取消？
+
+  points:
+    create:
+      success: 新增紀錄完成
+    update:
+      success: 更新紀錄成功
+    destroy:
+      success: 已刪除紀錄
+      confirm: 確定刪除紀錄？
+
+  activerecord:
+    attributes:
+      point_setting:
+        user_id: 設定可管理點數人員
+      user_point:
+        value: 預設點數
+        remark: 備註
+        logs: 修改紀錄
+      point:
+        subject: 主旨
+        author_id: 填寫人
+        status_id: 狀態
+        description: 備註
+        amount: 數量
+        point_date: 建立日期
+        start_date: 計算期間
+        end_date: 到

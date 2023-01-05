@@ -1,0 +1,45 @@
+<% if point.lines.any? %>
+  <table class="list point-lines">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th><%= l(:field_point_line_status_id) %></th>
+        <th><%= l(:field_point_line_user_id) %></th>
+        <th><%= l(:field_point_line_user_area) %></th>
+        <th><%= l(:field_point_line_user_unit) %></th>
+        <th><%= l(:field_point_line_project_id) %></th>
+        <th><%= l(:field_point_line_purple_no) %></th>
+        <th><%= l(:field_point_line_total_entries) %></th>
+        <th><%= l(:field_point_line_value) %></th>
+        <th>
+          <%= l(:field_point_line_convert_value) %>
+          <%= link_to image_tag('../images/help.png'), '#', title: l(:text_point_convert_value), remote: true %>
+        </th>
+        <th>
+          <%= l(:field_point_line_carry_value) %>
+          <%= link_to image_tag('../images/help.png'), '#', title: l(:text_point_carry_value), remote: true %>
+        </th>
+        <th><%= l(:field_point_line_description) %></th>
+      </tr>
+    </thead>
+
+    <% @point_lines.each.with_index(1) do |line, idx| %>
+      <tr id="line-<%= line.id %>">
+        <td class="sort-number"><%= idx %></td>
+        <td><%= l("point_line_status.#{line.status_id}") %></td>
+        <td><%= line.user %></td>
+        <td><%= line.user_area %></td>
+        <td><%= line.user_unit %></td>
+        <td><%= line.project %></td>
+        <td><%= line.purple_no %></td>
+        <td><%= line.total_entries %></td>
+        <td><%= line.value %></td>
+        <td><%= line.convert_value %></td>
+        <td><%= line.carry_value %></td>
+        <td class="description">
+          <%= line.description %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

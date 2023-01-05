@@ -1,0 +1,24 @@
+<h3><%= l(:label_point_log_plural) %></h3>
+
+<div id="history">
+  <% point_logs.each do |point_log| %>
+    <div class="journal">
+      <h4 class="note-header">
+        <%= avatar(point_log.user) %>
+        <%= authoring point_log.created_at, point_log.user, label: :label_updated_time_by %>
+      </h4>
+
+      <% if point_log.details.any? %>
+        <ul class="details point_history_style">
+          <% point_details_to_strings(point_log.details).each do |string| %>
+            <%= string %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag :add_sequence_number, plugin: 'redmine_points' %>
+<% end %>

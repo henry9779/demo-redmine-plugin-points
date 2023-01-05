@@ -1,0 +1,30 @@
+<div class="contextual" id="convert-entries">
+  <%= link_to l(:label_point_new), unconverted_entries_url, class: 'icon icon-add' %>
+</div>
+
+<%= form_tag(points_path, method: :get, id: 'query_filter') do %>
+  <fieldset>
+    <legend><%= l(:label_filter_plural) %></legend>
+    <p>
+      <%= label_tag 'label_between', l(:field_point_start_date) %>
+      <%= date_field_tag 'start_date', start_date_options_for_select %>
+
+      <%= label_tag 'label_to', l(:field_point_end_date) %>
+      <%= date_field_tag 'end_date', end_date_options_for_select %>
+    </p>
+
+    <%= query_subject_tag %>
+    <%= query_status_tag %>
+    <%= query_author_tag %>
+
+    <p>
+      <%= submit_tag l(:button_search), class: 'small' %>
+      <%= link_to l(:button_clear), points_path, class: 'icon icon-reload' %>
+    </p>
+  </fieldset>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag :points, plugin: 'redmine_points' %>
+  <%= javascript_include_tag :set_multiselect_style, plugin: 'redmine_points' %>
+<% end %>

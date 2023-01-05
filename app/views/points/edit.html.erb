@@ -1,0 +1,11 @@
+<h2><%= l(:label_point_edit) %></h2>
+
+<%= labelled_form_for :point, @point, url: { action: 'update' }, html: { id: 'point_form' } do |f| %>
+  <%= render partial: 'form', locals: { f: f, point: @point } %>
+  <%= submit_tag l(:button_save) %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag :points, plugin: 'redmine_points' %>
+  <%= javascript_include_tag :points, plugin: 'redmine_points'  %>
+<% end %>

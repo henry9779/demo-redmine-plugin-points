@@ -1,0 +1,55 @@
+<% if users.blank? %>
+  <p class="nodata"><%= t('label_no_data') %></p>
+<% else %>
+  <%= form_tag (user_points_point_management_index_path), id: 'user_points' do %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= t('field_login') %></th>
+          <th><%= t('field_firstname') %></th>
+          <th><%= t('field_lastname') %></th>
+          <th>
+            <%= t('activerecord.attributes.user_point.value') %>
+          </th>
+          <th>
+            <%= t('activerecord.attributes.user_point.remark') %>
+          </th>
+          <th>
+            <%= t('activerecord.attributes.user_point.logs') %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.each do |user| %>
+          <tr>
+            <td>
+              <%= avatar(user, size: '14') %>
+              <%= link_to user.login, edit_user_path(user) %>
+            </td>
+            <td><%= user.firstname %></td>
+            <td><%= user.lastname %></td>
+            <td>
+              <%= text_field_tag "user_points[user_id][#{user.id}][value]", user.user_point&.value %>
+            </td>
+            <td>
+              <%= text_field_tag "user_points[user_id][#{user.id}][remark]", user.user_point&.remark %>
+            </td>
+            <td>
+              <% if user&.user_point&.logs.present? %>
+                <%= link_to l(:label_user_point_log), user_point_log_point_management_index_path(user) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= submit_tag t('button_apply') %>
+    <span class="pagination"><%= pagination_links_full users_page, users_count %></span>
+    <% other_formats_links do %>
+      <span>
+        <%= link_to 'XLSX', point_management_index_path(format: 'xlsx') %>
+      </span>
+    <% end %>
+  <% end %>
+<% end %>

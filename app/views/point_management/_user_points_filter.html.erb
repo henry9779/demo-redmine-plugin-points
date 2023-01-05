@@ -1,0 +1,18 @@
+<%= form_tag(point_management_index_path, method: :get, id: 'users_form') do %>
+  <fieldset>
+    <legend><%= l(:label_filter_plural) %></legend>
+    <label for='dept'><%= l(:field_department) %>:</label>
+    <%= select_tag 'dept', user_dept_options_for_select, class: 'small', onchange: 'this.form.submit(); return false;' %>
+
+    <label for='dist'><%= l(:field_district) %>:</label>
+    <%= select_tag 'dist', user_dist_options_for_select, class: 'small', onchange: 'this.form.submit(); return false;' %>
+
+    <label for='name'><%= l(:label_user) %>:</label>
+    <%= text_field_tag 'name', params[:name], size: 30 %>
+
+    <%= hidden_field_tag :tab, :users %>
+
+    <%= submit_tag l(:button_search), class: 'small' %>
+    <%= link_to l(:button_clear), point_management_index_path(tab: :users), class: 'icon icon-reload' %>
+  </fieldset>
+<% end %>

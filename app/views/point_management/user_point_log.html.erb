@@ -1,0 +1,21 @@
+<h3 class="title">
+  <%= @user.name %>
+  <%= l(:label_user_point_log) %>
+</h3>
+
+<div id="history">
+  <% @user_point_logs.each do |log| %>
+    <div class="journal">
+      <h4 class="note-header">
+        <%= avatar(log.user) %>
+        <%= authoring log.created_at, log.user, label: :label_updated_time_by %>
+      </h4>
+
+      <ul class="details point_history_style">
+        <% user_point_to_strings(log.details).each do |string| %>
+          <%= string %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

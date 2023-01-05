@@ -1,0 +1,4 @@
+<%= render partial: 'shared/point_tabs' %>
+
+<%= render partial: 'user_points_filter' %>
+<%= render partial: 'user_points', locals: { users: @_users, users_page: @users_page, users_count: @users_count } %>

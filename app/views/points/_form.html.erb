@@ -1,0 +1,77 @@
+<%= error_messages_for 'point' %>
+
+<div class="box tabular attributes">
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <p>
+        <% if point.waiting_for_sync? || point.sync_failed? %>
+          <%= f.text_field :subject, required: true, style: 'width: 95%' %>
+        <% else %>
+          <%= f.label :subject %>
+          <%= point.subject %>
+        <% end %>
+      </p>
+      <p>
+        <%= f.label :start_date %>
+        <%= point.date_range %>
+        <%= f.hidden_field :start_date, value: point.start_date %>
+        <%= f.hidden_field :end_date, value: point.end_date %>
+      </p>
+      <p>
+        <% if point.waiting_for_sync? || point.sync_failed? %>
+          <%= f.select :status_id, options_for_status(point) %>
+        <% else %>
+          <%= f.label :status_id %>
+          <%= t("point_status.#{point.status_id}") %>
+        <% end %>
+      </p>
+      <p>
+        <%= f.label :author_id %>
+        <%= point.author %>
+        <%= f.hidden_field :author_id, value: point.author_id %>
+      </p>
+      <p>
+        <% if point.waiting_for_sync? || point.sync_failed? %>
+          <%= f.text_field :point_date, type: 'date', value: point.point_date.try(:to_date) %>
+        <% else %>
+          <%= f.label :point_date %>
+          <%= point.point_date.to_date %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <p>
+    <%= f.text_area :description, cols: 60, rows: 10, class: 'wiki-edit' %>
+    <%= wikitoolbar_for 'point_description' %>
+  </p>
+
+  <fieldset class="attributes">
+    <legend><%= l(:label_point_lines) %></legend>
+    <table class="point-lines form">
+      <tr>
+        <th><%= l(:field_point_line_status_id) %></th>
+        <th><%= l(:field_point_line_user_id) %></th>
+        <th><%= l(:field_point_line_project_id) %></th>
+        <th><%= l(:field_point_line_purple_no) %></th>
+        <th><%= l(:field_point_line_total_entries) %></th>
+        <th><%= l(:field_point_line_value) %></th>
+        <th>
+          <%= l(:field_point_line_convert_value) %>
+          <%= link_to image_tag('../images/help.png'), '#', title: l(:text_point_convert_value), remote: true %>
+        </th>
+        <th>
+          <%= l(:field_point_line_carry_value) %>
+          <%= link_to image_tag('../images/help.png'), '#', title: l(:text_point_carry_value), remote: true %>
+        </th>
+        <th><%= l(:field_point_line_description) %></th>
+      </tr>
+      <tbody>
+        <% f.object.lines.each_with_index do |line, idx| %>
+          <%= f.fields_for :lines, line do |builder| %>
+            <%= render partial: 'line_fields', locals: { f: builder, idx: idx, point: point } %>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+</div>

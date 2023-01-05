@@ -1,0 +1,62 @@
+table.point-lines.form {
+  width: 100%;
+  text-align: center;
+}
+
+table.point-lines.form input {
+  width: 100%;
+}
+
+table.point-lines.form .value input {
+  text-align: center;
+}
+
+table.point-lines.form .carry-value input {
+  text-align: center;
+}
+
+div.point.details {
+  background: #EAF7FF;
+}
+
+table.list.point-lines {
+  border: 0px;
+}
+
+table.list.point-lines thead th, .list.table.point-lines th {
+  border: 0px;
+  background: transparent;
+}
+
+table.list.point-lines td {
+  padding-left: 4px;
+  border: solid 1px #D7D7D7;
+}
+
+table.list.invoice-lines td.description {
+  text-align: left;
+  width: 120%;
+  white-space: normal;
+}
+
+div#convert-entries {
+  float: none;
+  text-align: right;
+}
+
+#query_filter label {
+  margin-right: 10px;
+}
+
+#query_filter span {
+  margin-right: 10px;
+}
+
+#query_filter .query_select {
+  width: 15%;
+}
+
+.point_history_style {
+  max-height: 150px;
+  overflow: auto;
+}
